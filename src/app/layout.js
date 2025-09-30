@@ -19,6 +19,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+       <head>
+        <link rel="icon" href="/logo1.png" sizes="any" />
+        <link rel="icon" href="/logo1.png" type="image/svg+xml" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -27,3 +31,5 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+

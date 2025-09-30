@@ -12,10 +12,14 @@ function Footer() {
             <div className="text-xs">Modern digital agency · All rights reserved</div>
           </div>
         </div>
+         
+        <div className="flex items-center gap-4">
+          <p>Made with ❤️ by Vision Ads</p>
+        </div>
         <div className="flex items-center gap-4">
           <a href="#">Privacy</a>
           <a href="#">Terms</a>
-          <a href="mailto:hello@visionads.com">hello@visionads.com</a>
+          <a href="mailto:rgaurav.ms@gmail.com">hello@visionads.com</a>
         </div>
       </div>
     </footer>

@@ -4,15 +4,19 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import React from "react";
+import Headers from "../components/Header";
+import Footer from "../components/Footer";
+
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       {/* Hero */}
-      <section className="max-w-6xl mx-auto py-20 px-6">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+      <Headers />
+      <section className="max-w-6xl mx-auto py-20 px-6 ">
+        <div className="grid md:grid-cols-2 gap-10 items-center mt-12">
           <div>
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mt-1">
               About{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-blue-600">
                 Vision Ads
@@ -144,6 +148,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

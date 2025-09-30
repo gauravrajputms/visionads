@@ -21,7 +21,7 @@ export default function Home() {
 /* ------------------ Hero ------------------ */
 function Hero() {
   return (
-    <section className="relative flex items-center justify-center text-center min-h-screen px-6 pt-24 overflow-hidden">
+    <section className="relative bg-[url('/images/home/1.jpg')] bg-cover bg-center flex items-center justify-center text-center min-h-screen px-6 pt-24 overflow-hidden">
       {/* Background illustrative image (place in public/images/hero-bg.jpg) */}
       <div className="absolute inset-0 -z-10 opacity-60">
         <Image src="/images/hero-bg.jpg" alt="hero-bg" fill style={{ objectFit: "cover" }} />
@@ -41,7 +41,7 @@ function Hero() {
         </p>
 
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-teal-400 to-blue-600 text-white font-semibold shadow-lg">Get a Quote</a>
+          <a href="https://wa.me/917302466295?text=Hello%20Vision%20Ads%20I%20want%20to%20get%20a%20quote " className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-teal-400 to-blue-600 text-white font-semibold shadow-lg">Get a Quote</a>
           <a href="#portfolio" className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-gray-200">See Portfolio</a>
         </div>
 
@@ -91,40 +91,66 @@ function Services() {
   ];
 
   return (
-    <section id="services" className="py-20 px-6">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8">Our Ultra‑Advanced Services</h2>
-        <div className="grid md:grid-cols-4 gap-6">
-          {services.map((s, i) => (
-            <motion.div key={i} whileHover={{ y: -6 }} className="bg-white rounded-2xl p-6 shadow-lg">
-              <div className="h-12 w-12 rounded-md bg-gradient-to-r from-teal-300 to-blue-400 flex items-center justify-center text-xl">{`S${i+1}`}</div>
-              <h3 className="mt-4 font-semibold text-lg">{s.title}</h3>
-              <p className="mt-2 text-gray-600 text-sm">{s.desc}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {s.tags.map((t) => (
-                  <span key={t} className="text-xs px-3 py-1 bg-gray-100 rounded-full">{t}</span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+  <section id="services" className="relative py-20 px-6 bg-gray-50 overflow-hidden">
+  {/* Background gradient circle */}
+  <div className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[120%] h-[120%] rounded-full bg-gradient-to-r from-teal-200 via-blue-300 to-purple-400 opacity-20 blur-3xl animate-pulse" />
+
+  <div className="relative max-w-7xl mx-auto">
+    <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+      Our Ultra-Advanced Services
+    </h2>
+
+    <div className="grid md:grid-cols-4 gap-8">
+      {services.map((s, i) => (
+        <motion.div
+          key={i}
+          whileHover={{ y: -20, scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 200, damping: 15 }}
+          className="relative bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl overflow-hidden group"
+        >
+          {/* Animated gradient border */}
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-teal-100 to-blue-200 opacity-20 group-hover:opacity-70 transition duration-500" />
+          <div className="relative z-10">
+            <div className="h-14 w-14 rounded-xl bg-gradient-to-r from-teal-300 to-blue-400 flex items-center justify-center text-lg font-bold text-white shadow-md">
+              {`S${i + 1}`}
+            </div>
+            <h3 className="mt-6 font-semibold text-lg text-gray-800 group-hover:text-blue-600 transition">
+              {s.title}
+            </h3>
+            <p className="mt-2 text-gray-600 text-sm leading-relaxed">
+              {s.desc}
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {s.tags.map((t) => (
+                <span
+                  key={t}
+                  className="text-xs px-3 py-1 bg-gray-100 rounded-full group-hover:bg-gradient-to-r group-hover:from-teal-300 group-hover:to-blue-400 group-hover:text-white transition"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
   );
 }
 
 /* ------------------ Portfolio ------------------ */
 function Portfolio() {
-  const items = ["portfolio1.jpg","portfolio2.jpg","portfolio3.jpg","portfolio4.jpg"];
+  const items = ["logo.jpg","pr.png","pr.png","logo.jpg"];
   return (
-    <section id="portfolio" className="py-20 px-6 bg-gradient-to-r from-teal-50 to-blue-50">
+    <section id="portfolio" className="py-20 bg-[url('/images/home/8.jpg')] bg-cover bg-center px-6 bg-gradient-to-r from-teal-50 to-blue-50">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold text-center mb-8">Selected Work</h2>
         <div className="grid md:grid-cols-4 gap-6">
           {items.map((img, i) => (
             <motion.div key={i} whileHover={{ scale: 1.03 }} className="bg-white rounded-2xl overflow-hidden shadow">
               <div className="relative h-48 w-full">
-                <Image src={`/images/${img}`} alt={`portfolio-${i}`} fill style={{ objectFit: "cover" }} />
+                <Image src={`/images/home/${img}`} alt={`portfolio-${i}`} fill style={{ objectFit: "cover" }} />
               </div>
               <div className="p-4">
                 <h4 className="font-semibold">Project {i + 1}</h4>
@@ -146,7 +172,7 @@ function Testimonials() {
     { name: "Khushboo", text: "Video edit quality is cinema-level. Highly recommended." },
   ];
   return (
-    <section id="testimonials" className="py-20 px-6">
+    <section id="testimonials" className="py-20 bg-[url('/images/home/9.jpg')] bg-cover bg-center px-6">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-8">What Clients Say</h2>
         <div className="grid md:grid-cols-3 gap-6">
