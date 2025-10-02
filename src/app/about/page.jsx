@@ -58,7 +58,7 @@ export default function AboutPage() {
             className="rounded-2xl overflow-hidden shadow-lg"
           >
             <Image
-              src="/images/about-hero.jpg"
+              src="/images/about/mission.svg"
               alt="Vision Ads Team"
               width={720}
               height={540}
@@ -75,18 +75,18 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                name: "Gaurav Rajput",
-                role: "Founder & Creative Director",
+                name: "Tushar",
+                role: "Founder & Creative Director & video editor",
                 img: "/images/team1.jpg",
               },
               {
-                name: "Khushbu",
-                role: "Head of Motion & Video",
+                name: "Nawed Ali",
+                role: "ceo & Designer",
                 img: "/images/team2.jpg",
               },
               {
-                name: "Ayush",
-                role: "Lead Developer",
+                name: "Gaurav Rajput",
+                role: "Web Developer",
                 img: "/images/team3.jpg",
               },
             ].map((m, i) => (

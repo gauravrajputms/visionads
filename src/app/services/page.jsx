@@ -85,11 +85,11 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative pt-20">
             <div className="rounded-2xl overflow-hidden shadow-lg bg-white">
               <div className="relative h-64 w-full">
                 {/* Replace with animation/Lottie if you want */}
-                <Image src="/images/service-web.jpg" alt="services" fill style={{ objectFit: "cover" }} />
+                <Image src="/images/services/hero-service.svg" alt="services" fill style={{ objectFit: "cover" }} />
               </div>
               <div className="p-6">
                 <div className="text-sm text-gray-500">Popular in 2025</div>

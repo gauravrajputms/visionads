@@ -7,24 +7,18 @@ import Header from "../components/Header";
 
 /**
  * app/portfolio/page.jsx
- * Requires: framer-motion (npm i framer-motion)
- * Add images to: public/images/portfolio1.jpg ... portfolio6.jpg
  */
 
 export default function PortfolioPage() {
   const items = [
-    { id: "p1", title: "Brand Refresh — Luma Co.", category: "Branding", image: "/images/portfolio1.jpg", desc: "Full brand identity, packaging & launch campaign.", result: "+45% brand recall" },
-    { id: "p2", title: "E-commerce Growth — QuickCart", category: "Web", image: "/images/portfolio2.jpg", desc: "Next.js store + CRO + paid ads funnel.", result: "3x revenue in 3 months" },
-    { id: "p3", title: "Social Series — EatRight", category: "Social", image: "/images/portfolio3.jpg", desc: "30 short-form videos + influencer seeding.", result: "Avg CTR 6%" },
-    { id: "p4", title: "Cinematic Promo — Nova", category: "Video", image: "/images/portfolio4.jpg", desc: "Cinematic product film, color graded & mixed.", result: "Festival selection" },
-    { id: "p5", title: "UI Revamp — FinFlow", category: "Web", image: "/images/portfolio5.jpg", desc: "Dashboard redesign with performance focus.", result: "+20% retention" },
-    { id: "p6", title: "Motion Kit — Stellar", category: "Branding", image: "/images/portfolio6.jpg", desc: "Animated logos, transitions & social templates.", result: "Reusable kit for teams" },
+    { id: "p1", title: "Graphics Template", category: "Graphics", image: "/images/portfolio/nawed.png", desc: "Full brand identity, graphics banner.", result: "+45% brand recall", url: "https://www.behance.net/nawedali412" },
+    { id: "p2", title: "Portfolio website", category: "Web", image: "/images/portfolio/gaurav.png", desc: "this is a portfolio templatee", result: "3x revenue in 3 months", url: "https://rajgaurav.netlify.app/" },
+    { id: "p3", title: "Natural theme ", category: "web", image: "/images/portfolio/nura.png", desc: "it is a weebsite templatee if need then sendd message", result: "Avg CTR 6%", url: "https://nuraweb.netlify.app/" },
   ];
 
   const categories = ["All", "Web", "Social", "Video", "Branding"];
   const [activeCat, setActiveCat] = useState("All");
   const [selected, setSelected] = useState(null);
-  const [liked, setLiked] = useState({});
 
   const filtered = activeCat === "All" ? items : items.filter((it) => it.category === activeCat);
 
@@ -65,7 +59,7 @@ export default function PortfolioPage() {
               transition={{ type: "spring", stiffness: 300 }}
               className="bg-white rounded-2xl shadow overflow-hidden hover:shadow-xl"
             >
-              <div className="relative h-52 w-full">
+              <div className="relative h-52 w-full cursor-pointer" onClick={() => setSelected(it)}>
                 <Image src={it.image} alt={it.title} fill style={{ objectFit: "cover" }} />
               </div>
 
@@ -76,18 +70,14 @@ export default function PortfolioPage() {
                     <div className="text-xs text-gray-500 mt-1">{it.category} • {it.result}</div>
                   </div>
 
-                  <div className="flex flex-col items-end gap-2">
-                    <button
-                      onClick={() => setLiked((s) => ({ ...s, [it.id]: !s[it.id] }))}
-                      className="text-lg leading-none select-none"
-                      aria-label={liked[it.id] ? "Unlike" : "Like"}
-                      title={liked[it.id] ? "Unsave" : "Save"}
-                    >
-                      <span className={`transition ${liked[it.id] ? "text-red-500" : "text-gray-400"}`}>{liked[it.id] ? "♥" : "♡"}</span>
-                    </button>
-
-                    <button onClick={() => setSelected(it)} className="text-sm px-3 py-1 rounded bg-gray-100 hover:bg-gray-200">View</button>
-                  </div>
+                  <a
+                    href={it.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm px-3 py-1 rounded bg-gray-100 hover:bg-gray-200"
+                  >
+                    View
+                  </a>
                 </div>
 
                 <p className="text-sm text-gray-600 mt-3">{it.desc}</p>
@@ -103,48 +93,45 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Modal / Lightbox */}
+      {/* Modal / Full Image Viewer with Content */}
       <AnimatePresence>
         {selected && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-6"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-6"
             onClick={() => setSelected(null)}
           >
             <motion.div
-              initial={{ y: 20, scale: 0.98 }}
-              animate={{ y: 0, scale: 1 }}
-              exit={{ y: 20, opacity: 0 }}
-              className="max-w-4xl w-full bg-white rounded-2xl overflow-hidden shadow-lg"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative max-w-5xl w-full max-h-[90vh] bg-white rounded-xl overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative h-72 w-full">
-                <Image src={selected.image} alt={selected.title} fill style={{ objectFit: "cover" }} />
+              <div className="relative w-full h-[60vh] bg-black">
+                <Image src={selected.image} alt={selected.title} fill style={{ objectFit: "contain" }} />
               </div>
-
               <div className="p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h2 className="text-xl font-bold">{selected.title}</h2>
-                    <div className="text-sm text-gray-500 mt-1">{selected.category} • {selected.result}</div>
-                  </div>
-
-                  <div className="flex gap-2">
-                    <a href={`/portfolio/${selected.id}`} className="px-4 py-2 rounded-full border">Case Study</a>
-                    <button onClick={() => setSelected(null)} className="px-4 py-2 rounded-full bg-gradient-to-r from-teal-400 to-blue-600 text-white">Close</button>
-                  </div>
-                </div>
-
-                <p className="mt-4 text-gray-700">{selected.desc} — detailed campaign summary, objectives, process and measurable results are available in the full case study.</p>
-
-                <div className="mt-6 grid md:grid-cols-3 gap-4">
-                  <div className="text-sm text-gray-600"><strong>Role:</strong> Creative Direction, Production</div>
-                  <div className="text-sm text-gray-600"><strong>Deliverables:</strong> Web, Motion, Social</div>
-                  <div className="text-sm text-gray-600"><strong>Tools:</strong> Figma, After Effects, Premiere, React</div>
-                </div>
+                <h2 className="text-xl font-bold">{selected.title}</h2>
+                <div className="text-sm text-gray-500 mt-1">{selected.category} • {selected.result}</div>
+                <p className="mt-3 text-gray-700">{selected.desc}</p>
+                <a
+                  href={selected.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-4 px-6 py-2 rounded-full bg-gradient-to-r from-teal-500 to-blue-600 text-white font-semibold shadow"
+                >
+                  View Project
+                </a>
               </div>
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-4 right-4 bg-black/60 text-white px-4 py-2 rounded-full hover:bg-black"
+              >
+                Close
+              </button>
             </motion.div>
           </motion.div>
         )}
